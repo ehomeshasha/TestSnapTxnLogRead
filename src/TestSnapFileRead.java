@@ -14,9 +14,8 @@ import java.util.List;
 import java.util.zip.Adler32;
 import java.util.zip.CheckedInputStream;
 
-import org.apache.jute.BinaryInputArchive;
-import org.apache.jute.InputArchive;
-
+import org.apache.jute.test.BinaryInputArchive;
+import org.apache.jute.test.InputArchive;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +23,8 @@ import org.slf4j.LoggerFactory;
 
 public class TestSnapFileRead {
 
-	private static final File snapDir = new File("/home/hadoop-user/pseudo_zookeeper/server001/data/version-2");
+	//private static final File snapDir = new File("/home/hadoop-user/pseudo_zookeeper/server001/data/version-2");
+	private static final File snapDir = new File("/home/hadoop-user/workspace/zookeeper/data/version-2");
 	
 	private static final Logger LOG = LoggerFactory.getLogger(TestSnapFileRead.class);
 	

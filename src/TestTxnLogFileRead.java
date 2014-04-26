@@ -18,20 +18,20 @@ import java.util.zip.Adler32;
 import java.util.zip.CheckedInputStream;
 import java.util.zip.Checksum;
 
-import org.apache.jute.BinaryInputArchive;
-import org.apache.jute.InputArchive;
-import org.apache.jute.Record;
-import org.apache.zookeeper.ZooDefs.OpCode;
-import org.apache.zookeeper.server.persistence.FileHeader;
-import org.apache.zookeeper.txn.CreateSessionTxn;
-import org.apache.zookeeper.txn.CreateTxn;
-import org.apache.zookeeper.txn.CreateTxnV0;
-import org.apache.zookeeper.txn.DeleteTxn;
-import org.apache.zookeeper.txn.ErrorTxn;
-import org.apache.zookeeper.txn.MultiTxn;
-import org.apache.zookeeper.txn.SetACLTxn;
-import org.apache.zookeeper.txn.SetDataTxn;
-import org.apache.zookeeper.txn.TxnHeader;
+import org.apache.jute.test.BinaryInputArchive;
+import org.apache.jute.test.InputArchive;
+import org.apache.jute.test.Record;
+import org.apache.zookeeper.server.persistence.test.FileHeader;
+import org.apache.zookeeper.test.ZooDefs.OpCode;
+import org.apache.zookeeper.txn.test.CreateSessionTxn;
+import org.apache.zookeeper.txn.test.CreateTxn;
+import org.apache.zookeeper.txn.test.CreateTxnV0;
+import org.apache.zookeeper.txn.test.DeleteTxn;
+import org.apache.zookeeper.txn.test.ErrorTxn;
+import org.apache.zookeeper.txn.test.MultiTxn;
+import org.apache.zookeeper.txn.test.SetACLTxn;
+import org.apache.zookeeper.txn.test.SetDataTxn;
+import org.apache.zookeeper.txn.test.TxnHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +43,7 @@ private static final File logDir = new File("/home/hadoop-user/pseudo_zookeeper/
 	
 	private static final Logger LOG = LoggerFactory.getLogger(TestTxnLogFileRead.class);
 	
-	private final static long lastProcessedZxid = 21474836485L;
+	private final static long lastProcessedZxid = 12884901889L;
 	//21474836481
 	//25769803777
 	//21474836485L
