@@ -42,6 +42,8 @@ public class CreateSessionTxn implements Record {
   public void deserialize(InputArchive a_, String tag) throws java.io.IOException {
     a_.startRecord(tag);
     timeOut=a_.readInt("timeOut");
+    System.out.println("Record type: "+this.getClass().getName());
+    System.out.println("timeOut: "+timeOut);
     a_.endRecord(tag);
 }
   public String toString() {

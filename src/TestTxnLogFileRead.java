@@ -39,12 +39,14 @@ import org.slf4j.LoggerFactory;
 
 
 public class TestTxnLogFileRead {
-private static final File logDir = new File("/home/hadoop-user/pseudo_zookeeper/server001/zookeeper/datalog/version-2");
+private static final File logDir = new File("/home/hadoop-user/pseudo_zookeeper/server001/logs/version-2");
 	
 	private static final Logger LOG = LoggerFactory.getLogger(TestTxnLogFileRead.class);
 	
-	private final static long lastProcessedZxid = 21474836606L;
-	
+	private final static long lastProcessedZxid = 21474836485L;
+	//21474836481
+	//25769803777
+	//21474836485L
 	public final static int TXNLOG_MAGIC =
 	        ByteBuffer.wrap("ZKLG".getBytes()).getInt();
 	
@@ -223,9 +225,11 @@ private static final File logDir = new File("/home/hadoop-user/pseudo_zookeeper/
             init();
 
             if (fastForward && hdr != null) {
-                while (hdr.getZxid() < zxid) {
-                    if (!next())
-                        break;
+            	System.out.println("In if (fastForward && hdr != null) {");
+            	while (hdr.getZxid() < zxid) {
+                	System.out.println("hdr zxid:"+hdr.getZxid());
+                	if (!next())
+                	    break;
                 }
             }
         }
@@ -258,6 +262,18 @@ private static final File logDir = new File("/home/hadoop-user/pseudo_zookeeper/
                     break;
                 }
             }
+            System.out.print("storedFiles: [");
+            int i = 0;
+            for(File f1: storedFiles) {
+            	if(i == 0) {
+            		System.out.print(f1.getName()+":"+getZxidFromName(f1.getName(), "log"));
+            		
+            	} else {
+            		System.out.print(","+f1.getName()+":"+getZxidFromName(f1.getName(), "log"));
+            	}
+            	i++;
+            }
+            System.out.println("]");
             goToNextLog();
             
             
@@ -374,6 +390,7 @@ private static final File logDir = new File("/home/hadoop-user/pseudo_zookeeper/
                 
                 
             } catch (EOFException e) {
+            	System.out.println("EOF excepton " + e);
                 LOG.debug("EOF excepton " + e);
                 inputStream.close();
                 inputStream = null;
@@ -489,7 +506,7 @@ private static final File logDir = new File("/home/hadoop-user/pseudo_zookeeper/
     public static byte[] readTxnBytes(InputArchive ia) throws IOException {
         try{
             byte[] bytes = ia.readBuffer("txtEntry");
-            System.out.println("txtEntry: "+ new String(bytes, "UTF-8"));
+            
             // Since we preallocate, we define EOF to be an
             // empty transaction
             if (bytes.length == 0)
@@ -520,6 +537,7 @@ private static final File logDir = new File("/home/hadoop-user/pseudo_zookeeper/
             txn = new CreateSessionTxn();
             break;
         case OpCode.closeSession:
+        	System.out.println("Record type: closeSession");
             return null;
         case OpCode.create:
         case OpCode.create2:

@@ -42,6 +42,8 @@ public class DeleteTxn implements Record {
   public void deserialize(InputArchive a_, String tag) throws java.io.IOException {
     a_.startRecord(tag);
     path=a_.readString("path");
+    System.out.println("Record type: "+this.getClass().getName());
+    System.out.println("path: "+path);
     a_.endRecord(tag);
 }
   public String toString() {

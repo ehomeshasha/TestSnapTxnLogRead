@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 public class TestSnapFileRead {
 
-	private static final File snapDir = new File("/home/hadoop-user/pseudo_zookeeper/server001/zookeeper/data/version-2");
+	private static final File snapDir = new File("/home/hadoop-user/pseudo_zookeeper/server001/data/version-2");
 	
 	private static final Logger LOG = LoggerFactory.getLogger(TestSnapFileRead.class);
 	
@@ -52,7 +52,7 @@ public class TestSnapFileRead {
 			CheckedInputStream crcIn = null;
 			
 			try {
-				//snap = new File("data/snapshot.100000000");
+				//snap = new File(snapDir+"/snapshot.500000005");
 	            LOG.info("Reading snapshot " + snap);
 	            snapIS = new BufferedInputStream(new FileInputStream(snap));
 	            crcIn = new CheckedInputStream(snapIS, new Adler32());
@@ -147,6 +147,8 @@ public class TestSnapFileRead {
 		            System.out.println();
 		            System.out.println(pathCnt+": path: "+path);
 	            }
+	            
+	            
 	            
 	            long checkSum = crcIn.getChecksum().getValue();
 	            long val = ia.readLong("val");

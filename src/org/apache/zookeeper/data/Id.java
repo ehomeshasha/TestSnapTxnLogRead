@@ -53,6 +53,8 @@ public class Id implements Record {
     a_.startRecord(tag);
     scheme=a_.readString("scheme");
     id=a_.readString("id");
+    System.out.println("scheme: "+scheme);
+    System.out.println("id: "+id);
     a_.endRecord(tag);
 }
   public String toString() {

@@ -90,8 +90,11 @@ public class CreateTxn implements Record {
   }
   public void deserialize(InputArchive a_, String tag) throws java.io.IOException {
     a_.startRecord(tag);
+    System.out.println("Record type: "+this.getClass().getName());
     path=a_.readString("path");
     data=a_.readBuffer("data");
+    System.out.println("path: "+path);
+    System.out.println("data: "+(new String(data, "UTF-8")));
     {
       Index vidx1 = a_.startVector("acl");
       if (vidx1!= null) {          acl=new java.util.ArrayList<org.apache.zookeeper.data.ACL>();
@@ -106,6 +109,8 @@ public class CreateTxn implements Record {
     }
     ephemeral=a_.readBool("ephemeral");
     parentCVersion=a_.readInt("parentCVersion");
+    System.out.println("ephemeral: "+ephemeral);
+    System.out.println("parentCVersion: "+parentCVersion);
     a_.endRecord(tag);
 }
   public String toString() {

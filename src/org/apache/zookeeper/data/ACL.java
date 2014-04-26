@@ -52,6 +52,7 @@ public class ACL implements Record {
   public void deserialize(InputArchive a_, String tag) throws java.io.IOException {
     a_.startRecord(tag);
     perms=a_.readInt("perms");
+    System.out.println("perms: "+perms);
     id= new org.apache.zookeeper.data.Id();
     a_.readRecord(id,"id");
     a_.endRecord(tag);
